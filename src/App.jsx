@@ -17,9 +17,10 @@ function App() {
   const [time, setTime] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
 
-  // State to define if the game has started or not
+  // State to define if the game has started or not.
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // This states defines if the "first render" (Mount) of the App has gone through or not.
   const [isFirstRender, setIsFirstRender] = useState(false);
 
   //Score states.
@@ -36,7 +37,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         data.sort(() => Math.random() - 0.5);
-        const newData = data.slice(0, 3);
+        const newData = data.slice(0, 20);
         setData(newData);
         setTargetArr(newData.map(country => country.name.official));
       })
@@ -57,9 +58,7 @@ function App() {
   const startGame = () => {
     setIsPlaying(true);
     setIsFirstRender(true);
-    setTimeout(() => {
-      findTargets();
-    }, 100);
+    findTargets();
   };
 
   useEffect(() => {
@@ -72,8 +71,10 @@ function App() {
   // If there is not a new target, this function will end the game.
   const findTargets = () => {
     let index = Math.floor(Math.random() * targetArr.length);
-    document.getElementById("sideContainer").style.visibility = "visible";
     setTarget(targetArr[index]);
+    if (isPlaying) {
+      document.getElementById("sideContainer").style.visibility = "visible";
+    }
     if (targetArr.length === 0) {
       setIsPlaying(false);
       document.getElementById("sideContainer").style.visibility = "hidden";
@@ -127,6 +128,20 @@ function App() {
   // This is a handler for the timer.
   useEffect(() => {
     if (isPlaying) {
+      // Animations for game start.
+      let side = document.getElementById("sideContainer");
+      side.animate([{ transform: "translateX(500px)" }, { transform: "translateX(0px)" }], {
+        duration: 500,
+        fill: "forwards",
+        easing: "cubic-bezier(.35,-0.14,.28,1.36)",
+      });
+      let top = document.getElementById("topContainer");
+      top.animate([{ transform: "translateY(-500px)" }, { transform: "translateY(0px)" }], {
+        duration: 500,
+        fill: "forwards",
+        easing: "cubic-bezier(.35,-0.14,.28,1.36)",
+      });
+      // Functions for starting the clock.
       const id = setInterval(() => {
         setTime(prevTime => prevTime + 10);
       }, 10);
