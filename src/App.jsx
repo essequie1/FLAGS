@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import Leaderboard from "./components/Leaderboard";
 import Modal from "./components/Modal";
 import Timer from "./components/Timer";
 import FlagContainer from "./components/FlagContainer";
@@ -72,12 +71,22 @@ function App() {
   const findTargets = () => {
     let index = Math.floor(Math.random() * targetArr.length);
     setTarget(targetArr[index]);
-    if (isPlaying) {
-      document.getElementById("sideContainer").style.visibility = "visible";
-    }
     if (targetArr.length === 0) {
-      setIsPlaying(false);
-      document.getElementById("sideContainer").style.visibility = "hidden";
+      let side = document.getElementById("sideContainer");
+      side.animate([{ transform: "translateX(500px)" }], {
+        duration: 500,
+        fill: "forwards",
+        easing: "cubic-bezier(.35,-0.14,.28,1.36)",
+      });
+      let top = document.getElementById("topContainer");
+      top.animate([{ transform: "translateY(-500px)" }], {
+        duration: 500,
+        fill: "forwards",
+        easing: "cubic-bezier(.35,-0.14,.28,1.36)",
+      });
+      setTimeout(() => {
+        setIsPlaying(false);
+      }, 500);
     }
   };
 
@@ -129,23 +138,25 @@ function App() {
   useEffect(() => {
     if (isPlaying) {
       // Animations for game start.
-      let side = document.getElementById("sideContainer");
-      side.animate([{ transform: "translateX(500px)" }, { transform: "translateX(0px)" }], {
-        duration: 500,
-        fill: "forwards",
-        easing: "cubic-bezier(.35,-0.14,.28,1.36)",
-      });
-      let top = document.getElementById("topContainer");
-      top.animate([{ transform: "translateY(-500px)" }, { transform: "translateY(0px)" }], {
-        duration: 500,
-        fill: "forwards",
-        easing: "cubic-bezier(.35,-0.14,.28,1.36)",
-      });
-      // Functions for starting the clock.
-      const id = setInterval(() => {
-        setTime(prevTime => prevTime + 10);
-      }, 10);
-      setIntervalId(id);
+      setTimeout(() => {
+        let side = document.getElementById("sideContainer");
+        side.animate([{ transform: "translateX(0px)" }], {
+          duration: 500,
+          fill: "forwards",
+          easing: "cubic-bezier(.35,-0.14,.28,1.36)",
+        });
+        let top = document.getElementById("topContainer");
+        top.animate([{ transform: "translateY(0px)" }], {
+          duration: 500,
+          fill: "forwards",
+          easing: "cubic-bezier(.35,-0.14,.28,1.36)",
+        });
+        // Functions for starting the clock.
+        const id = setInterval(() => {
+          setTime(prevTime => prevTime + 10);
+        }, 10);
+        setIntervalId(id);
+      }, 100);
     } else {
       clearInterval(intervalId);
     }
@@ -155,7 +166,7 @@ function App() {
     <div className="App">
       {isPlaying ? (
         <>
-          {target ? <TopContainer target={target} /> : <></>}
+          <TopContainer target={target} />
           {data ? <FlagContainer data={data} checkTarget={checkTarget} /> : <div key="loading">Loading...</div>}
           <div id="sideContainer" className="sideContainer">
             <h4 className="timerTitle">TIMER</h4>
@@ -165,7 +176,13 @@ function App() {
           </div>
         </>
       ) : (
-        <>{isFirstRender ? <Modal score={score} time={time} refetch={refetchData} /> : <Menu startGame={startGame} />}</>
+        <>
+          {isFirstRender ? (
+            <Modal score={score} time={time} refetch={refetchData} isFirstRender={isFirstRender} />
+          ) : (
+            <Menu startGame={startGame} isFirstRender={isFirstRender} />
+          )}
+        </>
       )}
     </div>
   );
