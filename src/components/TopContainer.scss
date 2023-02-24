@@ -1,0 +1,23 @@
+@use "../scss/mixins";
+
+.topContainer {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  place-items: center;
+  width: fit-content;
+  padding: 10px 20px;
+  color: black;
+  border-radius: 15px;
+  background-color: white;
+  border: 3px solid hsl(220, 5%, 25%);
+  box-shadow: 0 8px 0 hsl(220, 5%, 15%);
+  transform: translateY(-500px);
+  user-select: none;
+  &__text {
+    font-size: 1rem;
+  }
+  &__target {
+    font-size: 2rem;
+    color: black;
+  }
+}

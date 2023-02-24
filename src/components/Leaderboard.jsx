@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { collection, query, onSnapshot, orderBy, doc, addDoc } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import "./Leaderboard.scss";
 
 const Leaderboard = ({ close, isFirstRender, time, score }) => {
   const [leaders, setLeaders] = useState([]);
@@ -55,20 +56,20 @@ const Leaderboard = ({ close, isFirstRender, time, score }) => {
 
   return (
     <div id="leaderboard" className="leaderboard">
-      <button className="closeBtn" onClick={close}></button>
+      <button className="leaderboard__btn--close" onClick={close}></button>
       {loading ? (
-        <p className="loadingText">Loading...</p>
+        <p className="leaderboard__loading">Loading...</p>
       ) : (
         <>
-          <div className="leaderboardTitles">
+          <div className="leaderboard__titles">
             <p>Name</p>
             <p>Points</p>
             <p>Time</p>
             <p>Score</p>
           </div>
-          <div className="leadersContainer">
+          <div className="leaderboard__content">
             {leaders.map((leader, index) => (
-              <div className="leader" key={index}>
+              <div className="leaderboard__content__leader" key={index}>
                 <p>{leader.name}</p>
                 <p>{leader.points}</p>
                 <p>{leader.time}</p>
@@ -79,9 +80,17 @@ const Leaderboard = ({ close, isFirstRender, time, score }) => {
           {submitted ? (
             <></>
           ) : (
-            <div className="scoreSubmit">
-              <input onChange={e => checkInput(e)} id="nameInput" maxLength={15} minLength={3} placeholder="YOUR NAME" className="nameInput" type="text" />
-              <button onClick={sendScore} id="submitBtn" disabled={btnStatus} className="submitBtn">
+            <div className="leaderboard__submit">
+              <input
+                className="leaderboard__submit__input"
+                onChange={e => checkInput(e)}
+                id="nameInput"
+                maxLength={15}
+                minLength={3}
+                placeholder="YOUR NAME"
+                type="text"
+              />
+              <button className="leaderboard__submit__btn" onClick={sendScore} id="submitBtn" disabled={btnStatus}>
                 SEND SCORE
               </button>
             </div>

@@ -1,0 +1,16 @@
+@mixin button($color, $shadow) {
+  background-color: hsl($color, 100%, 80%);
+  font-size: 1.25rem;
+  font-weight: 900;
+  border-radius: 10px;
+  border: calc($shadow/2.5) solid hsl($color, 30%, 50%);
+  box-shadow: 0 calc($shadow) 0 hsl($color, 30%, 50%), 0 2px 0 hsl($color, 100%, 90%) inset;
+  &:active {
+    box-shadow: 0 calc($shadow/2) 0 hsl($color, 30%, 50%), 0 2px 0 hsl($color, 100%, 90%) inset;
+    transform: translateY(calc($shadow/2));
+  }
+}
+
+$gray: hsl(220, 5%, 25%);
+$dark-blue: hsl(227, 50%, 16%);
+$white: hsl(0, 0%, 100%);

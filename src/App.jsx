@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Modal from "./components/Modal";
-import Timer from "./components/Timer";
+import BottomContainer from "./components/BottomContainer";
 import FlagContainer from "./components/FlagContainer";
 import TopContainer from "./components/TopContainer";
 import Menu from "./components/Menu";
@@ -72,8 +72,8 @@ function App() {
     let index = Math.floor(Math.random() * targetArr.length);
     setTarget(targetArr[index]);
     if (targetArr.length === 0) {
-      let side = document.getElementById("sideContainer");
-      side.animate([{ transform: "translateX(500px)" }], {
+      let side = document.getElementById("bottomContainer");
+      side.animate([{ transform: "translateY(500px)" }], {
         duration: 500,
         fill: "forwards",
         easing: "cubic-bezier(.35,-0.14,.28,1.36)",
@@ -94,9 +94,10 @@ function App() {
   // Checks if the flag clicked is the same as the target, if so changes the flag opacity and also removes it from the targets array.
   // Every time the user clicks the "findTargets" function is run to find a new target flag.
   const checkTarget = (countryName, e) => {
-    if (e.target.classList != "flag completed") {
+    if (e.target.classList != "flagContainer__flag--completed") {
       if (countryName === target) {
-        e.target.classList.add("completed");
+        e.target.classList.remove("flagContainer__flag");
+        e.target.classList.add("flagContainer__flag--completed");
         setTargetArr(prevTargets => prevTargets.filter(t => t !== target));
         setScore(prev => prev + 10);
 
@@ -139,8 +140,8 @@ function App() {
     if (isPlaying) {
       // Animations for game start.
       setTimeout(() => {
-        let side = document.getElementById("sideContainer");
-        side.animate([{ transform: "translateX(0px)" }], {
+        let side = document.getElementById("bottomContainer");
+        side.animate([{ transform: "translateY(0px)" }], {
           duration: 500,
           fill: "forwards",
           easing: "cubic-bezier(.35,-0.14,.28,1.36)",
@@ -168,12 +169,7 @@ function App() {
         <>
           <TopContainer target={target} />
           {data ? <FlagContainer data={data} checkTarget={checkTarget} /> : <div key="loading">Loading...</div>}
-          <div id="sideContainer" className="sideContainer">
-            <h4 className="timerTitle">TIMER</h4>
-            {time ? <Timer time={time} /> : <></>}
-            <p className="scoreTitle">SCORE</p>
-            <p className="score">{score}</p>
-          </div>
+          <BottomContainer time={time} score={score} />
         </>
       ) : (
         <>

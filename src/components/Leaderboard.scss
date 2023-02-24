@@ -1,0 +1,132 @@
+@use "../scss/mixins";
+
+.leaderboard {
+  background-color: black;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -150svh);
+  width: 500px;
+  height: 500px;
+  padding: 20px;
+  background-color: white;
+  border: 4px solid hsl(220, 5%, 25%);
+  box-shadow: 0 10px 0 hsl(220, 5%, 15%);
+  user-select: none;
+  &__titles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    place-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    font-weight: 900;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      border-radius: 4px;
+      width: 450px;
+      height: 2px;
+      background-color: #3d3f43;
+    }
+  }
+  &__btn--close {
+    @include mixins.button(0, 5px);
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background-image: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png);
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &__loading {
+    width: 300px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &__content {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    &__leader {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      place-items: center;
+      margin-bottom: 15px;
+      position: relative;
+      font-size: 1rem;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        width: 450px;
+        height: 1px;
+        background-color: #3d3f43;
+      }
+    }
+  }
+  &__submit {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    &__input {
+      padding: 15px;
+      border-radius: 15px;
+      border: 3px solid hsl(220, 5%, 25%);
+      box-shadow: 0 6px 0 hsl(220, 5%, 15%);
+      width: 250px;
+      &:focus {
+        outline: none;
+      }
+    }
+    &__btn {
+      @include mixins.button(120, 6px);
+      padding: 10px;
+      &:disabled,
+      &[disabled] {
+        background-color: hsl(100, 100%, 80%);
+        border: calc(2.4px) solid hsl(100, 30%, 50%);
+        box-shadow: 0 calc(6px) 0 hsl(100, 30%, 50%);
+        &:active {
+          background-color: hsl(100, 100%, 80%);
+          border: calc(2.4px) solid hsl(100, 30%, 50%);
+          box-shadow: 0 calc(6px) 0 hsl(100, 30%, 50%);
+          transform: translateY(0);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .leaderboard {
+    width: 90vw;
+    height: 350px;
+    &__titles {
+      font-size: 0.9rem;
+      &::after {
+        width: 80vw;
+      }
+    }
+    &__content {
+      &__leader {
+        font-size: 0.75rem;
+        &::after {
+          width: 80vw;
+        }
+      }
+    }
+  }
+}

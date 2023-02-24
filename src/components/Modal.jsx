@@ -11,14 +11,14 @@ const Modal = ({ time, score, refetch, isFirstRender }) => {
   const handleClick = () => {
     if (isShown) {
       let board = document.getElementById("leaderboard");
-      board.animate([{ transform: "translate(-50%, -1000px)" }], {
+      board.animate([{ transform: "translate(-50%, -150svh)" }], {
         duration: 300,
         fill: "forwards",
         easing: "cubic-bezier(.35,-0.14,.28,1.36)",
       });
       setTimeout(() => {
         setIsShown(current => !current);
-      }, 800);
+      }, 200);
     } else {
       setIsShown(current => !current);
       setTimeout(() => {

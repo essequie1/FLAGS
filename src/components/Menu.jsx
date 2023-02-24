@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Leaderboard from "./Leaderboard";
+import "./Menu.scss";
 
 const Menu = ({ startGame, isFirstRender }) => {
   const [isShown, setIsShown] = useState(false);
@@ -7,14 +8,14 @@ const Menu = ({ startGame, isFirstRender }) => {
   const handleClick = () => {
     if (isShown) {
       let board = document.getElementById("leaderboard");
-      board.animate([{ transform: "translate(-50%, -1000px)" }], {
+      board.animate([{ transform: "translate(-50%, -150svh)" }], {
         duration: 300,
         fill: "forwards",
         easing: "cubic-bezier(.35,-0.14,.28,1.36)",
       });
       setTimeout(() => {
         setIsShown(current => !current);
-      }, 800);
+      }, 200);
     } else {
       setIsShown(current => !current);
       setTimeout(() => {
@@ -31,11 +32,11 @@ const Menu = ({ startGame, isFirstRender }) => {
   return (
     <>
       <div className="menu">
-        <h1 className="gameTitle">FLAGS!</h1>
-        <button className="startBtn" onClick={startGame}>
+        <h1 className="menu__title">FLAGS!</h1>
+        <button className="menu__btn--start" onClick={startGame}>
           START GAME
         </button>
-        <button className="leaderboradBtn" onClick={handleClick}>
+        <button className="menu__btn--leaderboard" onClick={handleClick}>
           LEADERBOARD
         </button>
       </div>
