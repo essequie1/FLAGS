@@ -42,12 +42,18 @@ function App() {
         switch (lang) {
           case "en":
             setTargetArr(newData.map(country => country.name.common));
+            break;
           case "es":
             setTargetArr(newData.map(country => country.translations.spa.common));
+            break;
           case "de":
+            console.log(newData);
             setTargetArr(newData.map(country => country.translations.deu.common));
+            break;
           case "pr":
+            console.log(newData);
             setTargetArr(newData.map(country => country.translations.por.common));
+            break;
         }
       })
       .catch(error => console.error(error));

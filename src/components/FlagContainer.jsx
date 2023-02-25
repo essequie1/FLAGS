@@ -33,13 +33,16 @@ const FlagContainer = ({ data, checkTarget }) => {
             switch (lang) {
               case "en":
                 checkTarget(country.name.common, e);
-
+                break;
               case "es":
                 checkTarget(country.translations.spa.common, e);
+                break;
               case "de":
                 checkTarget(country.translations.deu.common, e);
+                break;
               case "pr":
                 checkTarget(country.translations.por.common, e);
+                break;
             }
           }}
         />

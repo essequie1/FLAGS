@@ -35,7 +35,7 @@ const Menu = ({ startGame, isFirstRender }) => {
     }
   };
 
-  const showLangMenu = e => {
+  const showLangMenu = () => {
     let elm = document.getElementById("langContainer");
     let langBtn = document.getElementById("langBtn");
     if (elm.style.opacity == 0) {
@@ -65,7 +65,7 @@ const Menu = ({ startGame, isFirstRender }) => {
           </button>
           <div id="langContainer" className="menu__language__container">
             {langArr.map(lang => (
-              <button className="menu__language__container__btn" key={lang.langabb} onClick={e => (setLang(lang.langabb), showLangMenu())}>
+              <button className="menu__language__container__btn" key={lang.langabb} onClick={() => (setLang(lang.langabb), showLangMenu())}>
                 <img className="menu__language__container__btn__icon" src={"./assets/" + lang.langicon} alt="" />
                 {lang.langname}
               </button>
