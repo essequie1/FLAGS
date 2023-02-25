@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import "./App.css";
+import "./App.scss";
 import Modal from "./components/Modal";
 import BottomContainer from "./components/BottomContainer";
 import FlagContainer from "./components/FlagContainer";
@@ -39,12 +39,15 @@ function App() {
         shuffleArray(data);
         const newData = data.slice(0, 20);
         setData(newData);
-        console.log(newData);
-        if (lang === "en") {
-          setTargetArr(newData.map(country => country.name.common));
-        }
-        if (lang === "es") {
-          setTargetArr(newData.map(country => country.translations.spa.common));
+        switch (lang) {
+          case "en":
+            setTargetArr(newData.map(country => country.name.common));
+          case "es":
+            setTargetArr(newData.map(country => country.translations.spa.common));
+          case "de":
+            setTargetArr(newData.map(country => country.translations.deu.common));
+          case "pr":
+            setTargetArr(newData.map(country => country.translations.por.common));
         }
       })
       .catch(error => console.error(error));
@@ -112,7 +115,7 @@ function App() {
   // Checks if the flag clicked is the same as the target, if so changes the flag opacity and also removes it from the targets array.
   // Every time the user clicks the "findTargets" function is run to find a new target flag.
   const checkTarget = (countryName, e) => {
-    console.log(e);
+    let body = document.getElementById("body");
     if (e.target.classList != "flagContainer__flag--completed") {
       if (countryName === target) {
         e.target.classList.remove("flagContainer__flag");
@@ -121,11 +124,11 @@ function App() {
         setScore(prev => prev + 10);
 
         const elm = document.createElement("div");
+        document.body.appendChild(elm);
         elm.className = "hint correct";
         elm.textContent = langData.correct;
-        elm.style.left = e.clientX + "px";
-        elm.style.top = e.clientY + "px";
-        document.body.appendChild(elm);
+        elm.style.left = e.clientX - elm.clientWidth / 2 + "px";
+        elm.style.top = e.clientY - elm.clientHeight / 2 + "px";
         elm.animate(
           [
             { transform: "translateY(0)", opacity: 0 },
@@ -146,11 +149,11 @@ function App() {
         document.body.appendChild(hint);
 
         const elm = document.createElement("div");
+        document.body.appendChild(elm);
         elm.className = "hint incorrect";
         elm.textContent = langData.incorrect;
-        elm.style.left = e.clientX + "px";
-        elm.style.top = e.clientY + "px";
-        document.body.appendChild(elm);
+        elm.style.left = e.clientX - elm.clientWidth / 2 + "px";
+        elm.style.top = e.clientY - elm.clientHeight / 2 + "px";
         elm.animate([{ transform: "translateX(-5px)" }, { transform: "translateX(5px)" }], { duration: 50, iterations: 100, direction: "alternate" });
         setTimeout(() => {
           elm.animate([{ transform: "translateY(0)" }, { transform: "translateY(10px)", opacity: 0 }], { duration: 200, fill: "forwards", iterations: 1 });

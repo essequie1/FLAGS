@@ -1,4 +1,4 @@
-@use "../scss/mixins";
+@use "../scss/vars";
 
 .modal {
   display: grid;
@@ -14,17 +14,17 @@
   padding: 2rem 1.5rem;
   border-radius: 15px;
   gap: 1rem;
-  background-color: white;
-  border: 3px solid hsl(220, 5%, 25%);
-  box-shadow: 0 8px 0 hsl(220, 5%, 15%);
+  background-color: vars.$white;
+  border: 3px solid vars.$gray;
+  box-shadow: 0 8px 0 vars.$dark-gray;
   user-select: none;
   &__title {
     position: absolute;
     top: -70px;
     border-radius: 10px;
-    background-color: white;
-    border: 3px solid hsl(220, 5%, 25%);
-    box-shadow: 0 8px 0 hsl(220, 5%, 15%);
+    background-color: vars.$white;
+    border: 3px solid vars.$gray;
+    box-shadow: 0 8px 0 vars.$dark-gray;
     padding: 5px 15px;
   }
   &__points {
@@ -57,13 +57,13 @@
   &__btn {
     &--restart {
       grid-area: restart;
-      @include mixins.button(290, 8px);
+      @include vars.button(290, 8px);
       padding: 10px 20px;
       width: fit-content;
     }
     &--leader {
       grid-area: board;
-      @include mixins.button(200, 8px);
+      @include vars.button(200, 8px);
       padding: 10px 20px;
       width: fit-content;
     }

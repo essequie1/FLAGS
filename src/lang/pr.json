@@ -1,0 +1,36 @@
+{
+  "menu": {
+    "playbtn": "JOGAR",
+    "leaderbtn": "TABELA DE PONTOS"
+  },
+  "topContainer": {
+    "title": "Encontre a bandeira de:"
+  },
+  "bottomContainer": {
+    "timer": "TEMPO",
+    "points": "PONTOS"
+  },
+  "modal": {
+    "title": "CONCLUÍDO",
+    "points": "PONTOS",
+    "time": "TEMPO",
+    "finalScore": "RECORDE",
+    "restartbtn": "RECOMEÇAR",
+    "leaderbtn": "TABELA DE PONTOS"
+  },
+  "leaderboard": {
+    "loading": "Carregando...",
+    "name": "Nome",
+    "points": "Pontos",
+    "time": "Tempo",
+    "score": "Recorde",
+    "sendbtn": "ENVIAR PONTUAÇÃO",
+    "sendplaceholder": "SEU NOME"
+  },
+  "incorrect": "INCORRETO!",
+  "correct": "CORRETO!",
+  "hint": "Essa é a bandeira de ",
+  "langicon": "pt.svg",
+  "langname": "Português",
+  "langabb": "pr"
+}

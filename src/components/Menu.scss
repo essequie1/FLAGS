@@ -1,4 +1,4 @@
-@use "../scss/mixins";
+@use "../scss/vars";
 
 .menu {
   display: grid;
@@ -11,9 +11,9 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  border: 3px solid hsl(220, 5%, 25%);
-  box-shadow: 0 8px 0 hsl(220, 5%, 15%);
+  background-color: vars.$white;
+  border: 3px solid vars.$gray;
+  box-shadow: 0 8px 0 vars.$dark-gray;
   &__title {
     font-size: 3rem;
     text-shadow: 0 3px 0 hsl(290, 100%, 80%);
@@ -23,11 +23,11 @@
   }
   &__btn {
     &--start {
-      @include mixins.button(120, 8px);
+      @include vars.button(120, 8px);
       padding: 10px 15px;
     }
     &--leaderboard {
-      @include mixins.button(200, 8px);
+      @include vars.button(200, 8px);
       padding: 10px 15px;
     }
   }
@@ -37,12 +37,52 @@
     align-items: center;
     margin-top: 0.5rem;
     justify-content: center;
-    font-weight: 100;
-    &__btn {
-      font-size: 1.5rem;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    &__icon {
       background-color: transparent;
-      height: fit-content;
       cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border: 2px solid hsl(220, 5%, 25%);
+      box-shadow: 0 4px 0 hsl(220, 5%, 15%);
+      text-align: center;
+      border-radius: 10px;
+    }
+    &__container {
+      width: 120px;
+      position: absolute;
+      top: 30px;
+      left: -50px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      border: 2px solid vars.$dark-gray;
+      border-radius: 10px;
+      gap: 5px;
+      padding: 5px;
+      opacity: 0;
+      transition: all 100ms;
+      &__btn {
+        font-size: 1rem;
+        background-color: transparent;
+        height: fit-content;
+        text-align: center;
+        cursor: pointer;
+        padding: 5px;
+        display: flex;
+        gap: 5px;
+        border-radius: 10px;
+        &:hover {
+          background-color: vars.$light-gray;
+        }
+        &__icon {
+          width: 20px;
+          height: 20px;
+          border-radius: 100%;
+        }
+      }
     }
   }
 }

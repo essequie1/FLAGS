@@ -1,0 +1,36 @@
+{
+  "menu": {
+    "playbtn": "SPIELEN",
+    "leaderbtn": "BESTENLISTE"
+  },
+  "topContainer": {
+    "title": "Finde die Flagge von:"
+  },
+  "bottomContainer": {
+    "timer": "ZEIT",
+    "points": "PUNKTE"
+  },
+  "modal": {
+    "title": "ABGESCHLOSSEN",
+    "points": "PUNKTE",
+    "time": "ZEIT",
+    "finalScore": "REKORD",
+    "restartbtn": "NEUSTART",
+    "leaderbtn": "BESTENLISTE"
+  },
+  "leaderboard": {
+    "loading": "Wird geladen...",
+    "name": "Name",
+    "points": "Punkte",
+    "time": "Zeit",
+    "score": "Rekord",
+    "sendbtn": "PUNKTE SENDEN",
+    "sendplaceholder": "DEIN NAME"
+  },
+  "incorrect": "FALSCH!",
+  "correct": "RICHTIG!",
+  "hint": "Das ist die Flagge von ",
+  "langicon": "de.svg",
+  "langname": "Deutsch",
+  "langabb": "de"
+}

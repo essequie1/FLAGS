@@ -29,5 +29,8 @@
   },
   "incorrect": "INCORRECT!",
   "correct": "CORRECT!",
-  "hint": "That flag is from "
+  "hint": "That flag is from ",
+  "langicon": "us.svg",
+  "langname": "English",
+  "langabb": "en"
 }

@@ -1,3 +1,5 @@
+@use "../scss/vars";
+
 .flagContainer {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -10,9 +12,9 @@
   overflow-x: hidden;
   overflow-y: auto;
   user-select: none;
-  background-color: white;
-  border: 4px solid hsl(220, 5%, 25%);
-  box-shadow: 0 10px 0 hsl(220, 5%, 15%);
+  background-color: vars.$white;
+  border: 4px solid vars.$gray;
+  box-shadow: 0 10px 0 vars.$dark-gray;
   border-radius: 15px;
   transform: translateX(100vw);
   transition: all 500ms cubic-bezier(0.42, 0.97, 0.52, 1.49);
@@ -20,17 +22,17 @@
     scale: 0;
     max-height: 130px;
     transition: all 500ms;
-    border: 4px solid hsl(220, 0%, 15%);
-    box-shadow: 0 6px 0 hsl(220, 0%, 5%);
+    border: 4px solid vars.$gray;
+    box-shadow: 0 6px 0 vars.$dark-gray;
     cursor: pointer;
     &--completed {
       transition: all 200ms;
       opacity: 0.3;
       max-height: 130px;
       scale: 1;
-      border: 4px solid hsl(220, 0%, 15%);
-      box-shadow: 0 0 0 hsl(220, 0%, 5%);
-      transform: translateY(4px);
+      border: 4px solid vars.$gray;
+      box-shadow: 0 2px 0 vars.$dark-gray;
+      transform: translateY(2px);
     }
   }
 }
@@ -42,6 +44,15 @@
     gap: 1rem 0.5rem;
     &__flag {
       max-height: 100px;
+      &--completed {
+        transition: all 200ms;
+        opacity: 0.3;
+        max-height: 100px;
+        scale: 1;
+        border: 4px solid vars.$gray;
+        box-shadow: 0 2px 0 vars.$dark-gray;
+        transform: translateY(2px);
+      }
     }
   }
 }
@@ -52,6 +63,15 @@
     gap: 1rem 0.5rem;
     &__flag {
       max-height: 80px;
+      &--completed {
+        transition: all 200ms;
+        opacity: 0.3;
+        max-height: 80px;
+        scale: 1;
+        border: 4px solid vars.$gray;
+        box-shadow: 0 2px 0 vars.$dark-gray;
+        transform: translateY(2px);
+      }
     }
   }
 }

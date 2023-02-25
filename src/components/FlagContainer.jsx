@@ -30,11 +30,16 @@ const FlagContainer = ({ data, checkTarget }) => {
           src={country.flags.png}
           alt={"The flag of " + country.name.official}
           onClick={e => {
-            if (lang === "en") {
-              checkTarget(country.name.common, e);
-            }
-            if (lang === "es") {
-              checkTarget(country.translations.spa.common, e);
+            switch (lang) {
+              case "en":
+                checkTarget(country.name.common, e);
+
+              case "es":
+                checkTarget(country.translations.spa.common, e);
+              case "de":
+                checkTarget(country.translations.deu.common, e);
+              case "pr":
+                checkTarget(country.translations.por.common, e);
             }
           }}
         />

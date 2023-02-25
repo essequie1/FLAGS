@@ -29,5 +29,8 @@
   },
   "incorrect": "INCORRECTO!",
   "correct": "CORRECTO!",
-  "hint": "Esa es la bandera de "
+  "hint": "Esa es la bandera de ",
+  "langicon": "es.svg",
+  "langname": "Español",
+  "langabb": "es"
 }
