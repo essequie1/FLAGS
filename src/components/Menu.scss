@@ -27,7 +27,7 @@
       padding: 10px 15px;
     }
     &--leaderboard {
-      @include mixins.button(240, 8px);
+      @include mixins.button(200, 8px);
       padding: 10px 15px;
     }
   }

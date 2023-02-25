@@ -1,0 +1,71 @@
+@use "../scss/mixins";
+
+.modal {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  font-size: 1.25rem;
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem 1.5rem;
+  border-radius: 15px;
+  gap: 1rem;
+  background-color: white;
+  border: 3px solid hsl(220, 5%, 25%);
+  box-shadow: 0 8px 0 hsl(220, 5%, 15%);
+  user-select: none;
+  &__title {
+    position: absolute;
+    top: -70px;
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid hsl(220, 5%, 25%);
+    box-shadow: 0 8px 0 hsl(220, 5%, 15%);
+    padding: 5px 15px;
+  }
+  &__points {
+    font-weight: 900;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  &__time {
+    font-weight: 900;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  &__score {
+    font-weight: 900;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border-top: 2px solid black;
+    padding: 15px 0;
+  }
+  &__btnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  &__btn {
+    &--restart {
+      grid-area: restart;
+      @include mixins.button(290, 8px);
+      padding: 10px 20px;
+      width: fit-content;
+    }
+    &--leader {
+      grid-area: board;
+      @include mixins.button(200, 8px);
+      padding: 10px 20px;
+      width: fit-content;
+    }
+  }
+}

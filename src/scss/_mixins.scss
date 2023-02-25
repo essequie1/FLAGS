@@ -5,6 +5,7 @@
   border-radius: 10px;
   border: calc($shadow/2.5) solid hsl($color, 30%, 50%);
   box-shadow: 0 calc($shadow) 0 hsl($color, 30%, 50%), 0 2px 0 hsl($color, 100%, 90%) inset;
+  cursor: pointer;
   &:active {
     box-shadow: 0 calc($shadow/2) 0 hsl($color, 30%, 50%), 0 2px 0 hsl($color, 100%, 90%) inset;
     transform: translateY(calc($shadow/2));

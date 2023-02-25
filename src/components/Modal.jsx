@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Leaderboard from "./Leaderboard";
+import "./Modal.scss";
 
 const Modal = ({ time, score, refetch, isFirstRender }) => {
   const hours = Math.floor(time / 3600000);
@@ -34,23 +35,32 @@ const Modal = ({ time, score, refetch, isFirstRender }) => {
 
   return (
     <dialog className="modal">
-      <h2 className="modalTitle">COMPLETED</h2>
-      <p className="modalScoreText">SCORE</p>
-      <span className="modalScore">{score}</span>
-      <p className="modalTimeText">TIME</p>
-      <p className="modalTime">
-        {hours !== 0 ? (hours < 10 ? `0${hours}:` : `${hours}:`) : ""}
-        {minutes < 10 ? `0${minutes}:` : `${minutes}:`}
-        {seconds < 10 ? `0${seconds}` : `${seconds}`}
-      </p>
-      <p className="modalFinalScoreText">FINAL SCORE</p>
-      <span className="modalFinalScore">{score - Math.floor(time / 6000)}</span>
-      <button className="modalBtn --restart" onClick={refetch}>
-        REPLAY
-      </button>
-      <button className="modalBtn --leaderboard" onClick={handleClick}>
-        LEADERBOARD
-      </button>
+      <h2 className="modal__title">COMPLETED</h2>
+      <div className="modal__points">
+        <p>SCORE</p>
+        <span>{score}</span>
+      </div>
+      <div className="modal__time">
+        <p>TIME</p>
+        <span>
+          {hours !== 0 ? (hours < 10 ? `0${hours}:` : `${hours}:`) : ""}
+          {minutes < 10 ? `0${minutes}:` : `${minutes}:`}
+          {seconds < 10 ? `0${seconds}` : `${seconds}`}
+        </span>
+      </div>
+      <div className="modal__score">
+        <p>FINAL SCORE</p>
+        <span>{score - Math.floor(time / 6000)}</span>
+      </div>
+      <div className="modal__btnContainer">
+        <button className="modal__btn--restart" onClick={refetch}>
+          RESTART
+        </button>
+        <button className="modal__btn--leader" onClick={handleClick}>
+          LEADERBOARD
+        </button>
+      </div>
+
       {isShown ? <Leaderboard close={handleClick} isFirstRender={isFirstRender} score={score} time={time} /> : <></>}
     </dialog>
   );

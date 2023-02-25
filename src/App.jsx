@@ -35,12 +35,22 @@ function App() {
     fetch("https://restcountries.com/v3.1/all")
       .then(response => response.json())
       .then(data => {
-        data.sort(() => Math.random() - 0.5);
+        shuffleArray(data);
         const newData = data.slice(0, 20);
         setData(newData);
         setTargetArr(newData.map(country => country.name.official));
       })
       .catch(error => console.error(error));
+  };
+
+  // Function for shuffling arrays.
+  const shuffleArray = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
   };
 
   // Function to re-fetch the data and reset all the states. Used if the player press the "retry" button.
@@ -94,6 +104,7 @@ function App() {
   // Checks if the flag clicked is the same as the target, if so changes the flag opacity and also removes it from the targets array.
   // Every time the user clicks the "findTargets" function is run to find a new target flag.
   const checkTarget = (countryName, e) => {
+    console.log(e);
     if (e.target.classList != "flagContainer__flag--completed") {
       if (countryName === target) {
         e.target.classList.remove("flagContainer__flag");
@@ -104,11 +115,21 @@ function App() {
         const elm = document.createElement("div");
         elm.className = "hint correct";
         elm.textContent = "CORRECT!";
+        elm.style.left = e.clientX + "px";
+        elm.style.top = e.clientY + "px";
         document.body.appendChild(elm);
+        elm.animate(
+          [
+            { transform: "translateY(0)", opacity: 0 },
+            { transform: "translateY(-20px)", opacity: 1 },
+            { transform: "translateY(-30px)", opacity: 0 },
+          ],
+          { duration: 700, fill: "forwards", iterations: 1 }
+        );
 
         setTimeout(() => {
           elm.remove();
-        }, 1500);
+        }, 700);
       } else {
         findTargets();
         const hint = document.createElement("div");
@@ -119,11 +140,16 @@ function App() {
         const elm = document.createElement("div");
         elm.className = "hint incorrect";
         elm.textContent = "INCORRECT!";
+        elm.style.left = e.clientX + "px";
+        elm.style.top = e.clientY + "px";
         document.body.appendChild(elm);
-
+        elm.animate([{ transform: "translateX(-5px)" }, { transform: "translateX(5px)" }], { duration: 50, iterations: 100, direction: "alternate" });
+        setTimeout(() => {
+          elm.animate([{ transform: "translateY(0)" }, { transform: "translateY(10px)", opacity: 0 }], { duration: 200, fill: "forwards", iterations: 1 });
+        }, 500);
         setTimeout(() => {
           elm.remove();
-        }, 1500);
+        }, 700);
         setTimeout(() => {
           hint.remove();
         }, 2000);
