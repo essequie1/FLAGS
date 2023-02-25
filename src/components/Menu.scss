@@ -31,4 +31,18 @@
       padding: 10px 15px;
     }
   }
+  &__language {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.5rem;
+    justify-content: center;
+    font-weight: 100;
+    &__btn {
+      font-size: 1.5rem;
+      background-color: transparent;
+      height: fit-content;
+      cursor: pointer;
+    }
+  }
 }

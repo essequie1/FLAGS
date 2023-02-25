@@ -1,0 +1,33 @@
+{
+  "menu": {
+    "playbtn": "JUGAR",
+    "leaderbtn": "TABLA DE PUNTOS"
+  },
+  "topContainer": {
+    "title": "Encuentra la bandera de:"
+  },
+  "bottomContainer": {
+    "timer": "TIEMPO",
+    "points": "PUNTOS"
+  },
+  "modal": {
+    "title": "COMPLETADO",
+    "points": "PUNTOS",
+    "time": "TIEMPO",
+    "finalScore": "RECORD",
+    "restartbtn": "REINTENTAR",
+    "leaderbtn": "TABLA DE PUNTOS"
+  },
+  "leaderboard": {
+    "loading": "Cargando...",
+    "name": "Nombre",
+    "points": "Puntos",
+    "time": "Tiempo",
+    "score": "Record",
+    "sendbtn": "ENVIAR PUNTAJE",
+    "sendplaceholder": "TU NOMBRE"
+  },
+  "incorrect": "INCORRECTO!",
+  "correct": "CORRECTO!",
+  "hint": "Esa es la bandera de "
+}

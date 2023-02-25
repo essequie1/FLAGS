@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Leaderboard from "./Leaderboard";
+import langContext from "../context/lang";
+
 import "./Menu.scss";
 
 const Menu = ({ startGame, isFirstRender }) => {
+  // Language Context.
+  const { lang, setLang, langData } = useContext(langContext);
+
   const [isShown, setIsShown] = useState(false);
 
   const handleClick = () => {
@@ -34,11 +39,28 @@ const Menu = ({ startGame, isFirstRender }) => {
       <div className="menu">
         <h1 className="menu__title">FLAGS!</h1>
         <button className="menu__btn--start" onClick={startGame}>
-          START GAME
+          {langData.menu.playbtn}
         </button>
         <button className="menu__btn--leaderboard" onClick={handleClick}>
-          LEADERBOARD
+          {langData.menu.leaderbtn}
         </button>
+        <div className="menu__language">
+          {lang === "en" ? (
+            <>
+              <h6>Cambiar idioma</h6>
+              <button className="menu__language__btn" onClick={() => setLang("es")}>
+                🇪🇸
+              </button>
+            </>
+          ) : (
+            <>
+              <h6>Switch language</h6>
+              <button className="menu__language__btn" onClick={() => setLang("en")}>
+                🇺🇸
+              </button>
+            </>
+          )}
+        </div>
       </div>
       {isShown ? <Leaderboard close={handleClick} isFirstRender={isFirstRender} /> : <></>}
     </>

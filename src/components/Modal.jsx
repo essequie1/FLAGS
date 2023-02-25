@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Leaderboard from "./Leaderboard";
 import "./Modal.scss";
+import langContext from "../context/lang";
 
 const Modal = ({ time, score, refetch, isFirstRender }) => {
+  const { lang, setLang, langData } = useContext(langContext);
+
   const hours = Math.floor(time / 3600000);
   const minutes = Math.floor((time % 3600000) / 60000);
   const seconds = Math.floor((time % 60000) / 1000);
@@ -35,13 +38,13 @@ const Modal = ({ time, score, refetch, isFirstRender }) => {
 
   return (
     <dialog className="modal">
-      <h2 className="modal__title">COMPLETED</h2>
+      <h2 className="modal__title">{langData.modal.title}</h2>
       <div className="modal__points">
-        <p>SCORE</p>
+        <p>{langData.modal.points}</p>
         <span>{score}</span>
       </div>
       <div className="modal__time">
-        <p>TIME</p>
+        <p>{langData.modal.time}</p>
         <span>
           {hours !== 0 ? (hours < 10 ? `0${hours}:` : `${hours}:`) : ""}
           {minutes < 10 ? `0${minutes}:` : `${minutes}:`}
@@ -49,15 +52,15 @@ const Modal = ({ time, score, refetch, isFirstRender }) => {
         </span>
       </div>
       <div className="modal__score">
-        <p>FINAL SCORE</p>
+        <p>{langData.modal.finalScore}</p>
         <span>{score - Math.floor(time / 6000)}</span>
       </div>
       <div className="modal__btnContainer">
         <button className="modal__btn--restart" onClick={refetch}>
-          RESTART
+          {langData.modal.restartbtn}
         </button>
         <button className="modal__btn--leader" onClick={handleClick}>
-          LEADERBOARD
+          {langData.modal.leaderbtn}
         </button>
       </div>
 

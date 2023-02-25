@@ -1,17 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./App.css";
 import Modal from "./components/Modal";
 import BottomContainer from "./components/BottomContainer";
 import FlagContainer from "./components/FlagContainer";
 import TopContainer from "./components/TopContainer";
 import Menu from "./components/Menu";
+import langContext from "./context/lang";
 
 function App() {
+  // Context for Language.
+  const { lang, setLang, langData } = useContext(langContext);
+
+  // States for game main data.
   const [data, setData] = useState(null);
   const [targetArr, setTargetArr] = useState([]);
   const [target, setTarget] = useState(undefined);
 
-  //State to set the "first render" of the game.
   //Timer states.
   const [time, setTime] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
@@ -26,9 +30,6 @@ function App() {
   const [score, setScore] = useState(0);
 
   // API Call, setting up data from countries and the target flags array.
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   // Function to fetch data from the Countries API
   const fetchData = () => {
@@ -38,7 +39,13 @@ function App() {
         shuffleArray(data);
         const newData = data.slice(0, 20);
         setData(newData);
-        setTargetArr(newData.map(country => country.name.official));
+        console.log(newData);
+        if (lang === "en") {
+          setTargetArr(newData.map(country => country.name.common));
+        }
+        if (lang === "es") {
+          setTargetArr(newData.map(country => country.translations.spa.common));
+        }
       })
       .catch(error => console.error(error));
   };
@@ -65,6 +72,7 @@ function App() {
   // This effect handles the search for a new target every time the player clicks a flag.
 
   const startGame = () => {
+    fetchData();
     setIsPlaying(true);
     setIsFirstRender(true);
     findTargets();
@@ -114,7 +122,7 @@ function App() {
 
         const elm = document.createElement("div");
         elm.className = "hint correct";
-        elm.textContent = "CORRECT!";
+        elm.textContent = langData.correct;
         elm.style.left = e.clientX + "px";
         elm.style.top = e.clientY + "px";
         document.body.appendChild(elm);
@@ -134,12 +142,12 @@ function App() {
         findTargets();
         const hint = document.createElement("div");
         hint.className = "hint countryHint";
-        hint.textContent = "That flag is from " + countryName;
+        hint.textContent = langData.hint + countryName;
         document.body.appendChild(hint);
 
         const elm = document.createElement("div");
         elm.className = "hint incorrect";
-        elm.textContent = "INCORRECT!";
+        elm.textContent = langData.incorrect;
         elm.style.left = e.clientX + "px";
         elm.style.top = e.clientY + "px";
         document.body.appendChild(elm);

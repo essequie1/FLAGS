@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { collection, query, onSnapshot, orderBy, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import langContext from "../context/lang";
 import "./Leaderboard.scss";
 
 const Leaderboard = ({ close, isFirstRender, time, score }) => {
+  const { lang, setLang, langData } = useContext(langContext);
+
   const [leaders, setLeaders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [playerName, setPlayerName] = useState("");
@@ -58,14 +61,14 @@ const Leaderboard = ({ close, isFirstRender, time, score }) => {
     <div id="leaderboard" className="leaderboard">
       <button className="leaderboard__btn--close" onClick={close}></button>
       {loading ? (
-        <p className="leaderboard__loading">Loading...</p>
+        <p className="leaderboard__loading">{langData.leaderboard.loading}</p>
       ) : (
         <>
           <div className="leaderboard__titles">
-            <p>Name</p>
-            <p>Points</p>
-            <p>Time</p>
-            <p>Score</p>
+            <p>{langData.leaderboard.name}</p>
+            <p>{langData.leaderboard.points}</p>
+            <p>{langData.leaderboard.time}</p>
+            <p>{langData.leaderboard.score}</p>
           </div>
           <div className="leaderboard__content">
             {leaders.map((leader, index) => (
@@ -87,11 +90,11 @@ const Leaderboard = ({ close, isFirstRender, time, score }) => {
                 id="nameInput"
                 maxLength={15}
                 minLength={3}
-                placeholder="YOUR NAME"
+                placeholder={langData.leaderboard.sendplaceholder}
                 type="text"
               />
               <button className="leaderboard__submit__btn" onClick={sendScore} id="submitBtn" disabled={btnStatus}>
-                SEND SCORE
+                {langData.leaderboard.sendbtn}
               </button>
             </div>
           )}

@@ -1,7 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import langContext from "../context/lang";
+
 import "./FlagContainer.scss";
 
 const FlagContainer = ({ data, checkTarget }) => {
+  const { lang, setLang, langData } = useContext(langContext);
+
   useEffect(() => {
     if (data) {
       let container = document.getElementById("flagContainer");
@@ -26,7 +30,12 @@ const FlagContainer = ({ data, checkTarget }) => {
           src={country.flags.png}
           alt={"The flag of " + country.name.official}
           onClick={e => {
-            checkTarget(country.name.official, e);
+            if (lang === "en") {
+              checkTarget(country.name.common, e);
+            }
+            if (lang === "es") {
+              checkTarget(country.translations.spa.common, e);
+            }
           }}
         />
       ))}

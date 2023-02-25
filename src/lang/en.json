@@ -1,0 +1,33 @@
+{
+  "menu": {
+    "playbtn": "START GAME",
+    "leaderbtn": "LEADERBOARD"
+  },
+  "topContainer": {
+    "title": "Find the flag of:"
+  },
+  "bottomContainer": {
+    "timer": "TIMER",
+    "points": "POINTS"
+  },
+  "modal": {
+    "title": "COMPLETED",
+    "points": "POINTS",
+    "time": "TIME",
+    "finalScore": "FINAL SCORE",
+    "restartbtn": "RESTART",
+    "leaderbtn": "LEADERBOARD"
+  },
+  "leaderboard": {
+    "loading": "Loading...",
+    "name": "Name",
+    "points": "Points",
+    "time": "Time",
+    "score": "Score",
+    "sendbtn": "SEND SCORE",
+    "sendplaceholder": "YOUR NAME"
+  },
+  "incorrect": "INCORRECT!",
+  "correct": "CORRECT!",
+  "hint": "That flag is from "
+}
